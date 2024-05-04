@@ -87,6 +87,9 @@ public class Consultapaciente extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel2.getAccessibleContext().setAccessibleName("lblIdPaciente");
+        intId_Paciente.getAccessibleContext().setAccessibleName("txtIdPaciente");
+
         btnHistorialClinico.setText("Historial Clinico");
         btnHistorialClinico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

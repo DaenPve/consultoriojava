@@ -12,7 +12,6 @@ com\mycompany\consultorio\persistencia\PacienteJpaController.class
 com\mycompany\consultorio\persistencia\HistorialClinicoJpaController.class
 com\mycompany\consultorio\igu\Consultacita.class
 com\mycompany\consultorio\igu\Principal.class
-com\mycompany\consultorio\igu\Registropacientes$8.class
 com\mycompany\consultorio\logica\HistorialClinico.class
 com\mycompany\consultorio\igu\Registropacientes$3.class
 com\mycompany\consultorio\persistencia\Controladorapersi.class
@@ -24,7 +23,6 @@ com\mycompany\consultorio\igu\Principal$1.class
 com\mycompany\consultorio\persistencia\exceptions\IllegalOrphanException.class
 com\mycompany\consultorio\igu\Registropacientes$1.class
 com\mycompany\consultorio\igu\Consultapaciente.class
-com\mycompany\consultorio\igu\Registropacientes$9.class
 com\mycompany\consultorio\igu\Registropacientes$2.class
 com\mycompany\consultorio\igu\Principal$2.class
 com\mycompany\consultorio\logica\HistorialClinico_.class

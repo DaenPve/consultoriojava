@@ -112,9 +112,9 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel2" min="-2" pref="81" max="-2" attributes="0"/>
+                                      <Component id="lblIdPaciente" min="-2" pref="81" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="intId_paciente" min="-2" pref="75" max="-2" attributes="0"/>
+                                      <Component id="txtIdPaciente" min="-2" pref="75" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel7" min="-2" pref="48" max="-2" attributes="0"/>
@@ -124,7 +124,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel8" min="-2" pref="48" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtSexo" min="-2" pref="46" max="-2" attributes="0"/>
+                                      <Component id="cmbSexo" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel10" min="-2" pref="67" max="-2" attributes="0"/>
@@ -144,8 +144,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel2" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
-                          <Component id="intId_paciente" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="lblIdPaciente" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                          <Component id="txtIdPaciente" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -170,7 +170,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtSexo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbSexo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -188,7 +188,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="lblIdPaciente">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Id_paciente"/>
               </Properties>
@@ -228,45 +228,50 @@
                 <Property name="text" type="java.lang.String" value="Telef&#xf3;no"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="intId_paciente">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="intId_pacienteActionPerformed"/>
-              </Events>
+            <Component class="javax.swing.JTextField" name="txtIdPaciente">
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="txtIdPaciente"/>
+              </AccessibilityProperties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNombre">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtPrimerApellido">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPrimerApellidoActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPrimerApellidoKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtSegudoApellido">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSegudoApellidoActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSegudoApellidoKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtTelefono">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTelefonoActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtSexo">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSexoActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTelefonoKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="intEdad">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="intEdadActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="intEdadKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtDireccion">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDireccionActionPerformed"/>
-              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cmbSexo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="2">
+                    <StringItem index="0" value="M"/>
+                    <StringItem index="1" value="F"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -280,11 +285,11 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="btnEliminar" min="-2" pref="92" max="-2" attributes="0"/>
-                      <Component id="btnLimpiar" min="-2" pref="92" max="-2" attributes="0"/>
-                      <Component id="btnModificar" min="-2" pref="92" max="-2" attributes="0"/>
+                      <Component id="btnEliminarPaciente" min="-2" pref="92" max="-2" attributes="0"/>
+                      <Component id="btnLimpiarPaciente" min="-2" pref="92" max="-2" attributes="0"/>
+                      <Component id="btnModificarPaciente" min="-2" pref="92" max="-2" attributes="0"/>
                       <Component id="btnRegresar" min="-2" pref="92" max="-2" attributes="0"/>
-                      <Component id="btnGuardar" min="-2" pref="92" max="-2" attributes="0"/>
+                      <Component id="btnGuardarPaciente" min="-2" pref="92" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="117" max="32767" attributes="0"/>
               </Group>
@@ -294,13 +299,13 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                  <Component id="btnGuardar" min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="btnGuardarPaciente" min="-2" pref="41" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnModificar" min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="btnModificarPaciente" min="-2" pref="41" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnLimpiar" min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="btnLimpiarPaciente" min="-2" pref="41" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnEliminar" min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="btnEliminarPaciente" min="-2" pref="41" max="-2" attributes="0"/>
                   <EmptySpace pref="21" max="32767" attributes="0"/>
                   <Component id="btnRegresar" min="-2" pref="41" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -309,30 +314,33 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnGuardar">
+        <Component class="javax.swing.JButton" name="btnGuardarPaciente">
           <Properties>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarPacienteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnRegresar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Regresar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnModificar">
+        <Component class="javax.swing.JButton" name="btnModificarPaciente">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnLimpiar">
+        <Component class="javax.swing.JButton" name="btnLimpiarPaciente">
           <Properties>
             <Property name="text" type="java.lang.String" value="Limpiar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarPacienteActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnEliminar">
+        <Component class="javax.swing.JButton" name="btnEliminarPaciente">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
           </Properties>
