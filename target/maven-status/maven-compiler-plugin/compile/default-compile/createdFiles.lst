@@ -6,6 +6,7 @@ com\mycompany\consultorio\igu\Consultapaciente$2.class
 com\mycompany\consultorio\logica\Paciente_.class
 com\mycompany\consultorio\igu\Registropacientes$5.class
 com\mycompany\consultorio\persistencia\exceptions\NonexistentEntityException.class
+com\mycompany\consultorio\igu\Consultapaciente$3.class
 com\mycompany\consultorio\igu\Principal$3.class
 com\mycompany\consultorio\logica\Paciente.class
 com\mycompany\consultorio\persistencia\PacienteJpaController.class
@@ -15,6 +16,7 @@ com\mycompany\consultorio\igu\Principal.class
 com\mycompany\consultorio\logica\HistorialClinico.class
 com\mycompany\consultorio\igu\Registropacientes$3.class
 com\mycompany\consultorio\persistencia\Controladorapersi.class
+com\mycompany\consultorio\logica\CitaMedica_.class
 com\mycompany\consultorio\igu\Registropacientes$6.class
 com\mycompany\consultorio\igu\Historialclinico$1.class
 com\mycompany\consultorio\logica\CitaMedica.class

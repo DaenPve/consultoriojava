@@ -1,12 +1,25 @@
 package com.mycompany.consultorio.logica;
 
-public class CitaMedica {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
+public class CitaMedica implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id_cita;
     private String nombre;
     private String primerapellido;
     private String segundoapellido;
+   
     private String fecha;
+    
     private String hora;
     private String servicio;
 
@@ -78,8 +91,5 @@ public class CitaMedica {
     public void setServicio(String servicio) {
         this.servicio = servicio;
     }
-    
-    
-    
-    
+   
 }

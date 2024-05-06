@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -22,12 +23,13 @@ public class Paciente implements Serializable {
     private String direccion;
     private String telefono;
     @OneToOne
-    private HistorialClinico unHistorialClinico;
+    @JoinColumn(name="id_historial")
+    private HistorialClinico id_historial;
 
     public Paciente() {
     }
 
-    public Paciente(int id_paciente, String nombre, String primerApellido, String segundoApellido, String edad, String sexo, String direccion, String telefono, HistorialClinico unHistorialClinico) {
+    public Paciente(int id_paciente, String nombre, String primerApellido, String segundoApellido, String edad, String sexo, String direccion, String telefono, HistorialClinico id_historial) {
         this.id_paciente = id_paciente;
         this.nombre = nombre;
         this.primerApellido = primerApellido;
@@ -36,7 +38,7 @@ public class Paciente implements Serializable {
         this.sexo = sexo;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.unHistorialClinico = unHistorialClinico;
+        this.id_historial = id_historial;
         
         
     }
@@ -105,13 +107,14 @@ public class Paciente implements Serializable {
         this.telefono = telefono;
     }
 
-    public HistorialClinico getUnHistorialClinico() {
-        return unHistorialClinico;
+    public HistorialClinico getId_historial() {
+        return id_historial;
     }
 
-    public void setUnHistorialClinico(HistorialClinico unHistorialClinico) {
-        this.unHistorialClinico = unHistorialClinico;
+    public void setId_historial(HistorialClinico id_historial) {
+        this.id_historial = id_historial;
     }
+
     
        
 }

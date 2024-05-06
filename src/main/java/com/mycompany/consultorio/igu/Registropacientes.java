@@ -1,16 +1,13 @@
 package com.mycompany.consultorio.igu;
 
 import com.mycompany.consultorio.logica.Paciente;
-import com.mycompany.consultorio.persistencia.PacienteJpaController;
+import com.mycompany.consultorio.persistencia.Controladorapersi;
 import java.awt.event.KeyEvent;
 
 public class Registropacientes extends javax.swing.JFrame {
 
     public Registropacientes() {
         initComponents();
-        lblIdPaciente.setVisible(false);
-        txtIdPaciente.setVisible(false);
-        btnEliminarPaciente.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -307,7 +304,8 @@ public class Registropacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void btnGuardarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPacienteActionPerformed
-  
+ 
+        
         Paciente paciente = new Paciente();
         paciente.setNombre(txtNombre.getText());
         paciente.setPrimerApellido(txtPrimerApellido.getText());
@@ -316,10 +314,11 @@ public class Registropacientes extends javax.swing.JFrame {
         paciente.setSexo((String)cmbSexo.getSelectedItem());
         paciente.setDireccion(txtDireccion.getText());
         paciente.setTelefono(txtTelefono.getText());
+        paciente.setId_historial(null);
         
-        //Enviar el objeto a la base de datos
-        PacienteJpaController pacienteController = new PacienteJpaController();
-        pacienteController.insertar(paciente);
+        
+        Controladorapersi controladorapersi = new Controladorapersi();
+        controladorapersi.crearPaciente(paciente);
         
     }//GEN-LAST:event_btnGuardarPacienteActionPerformed
 

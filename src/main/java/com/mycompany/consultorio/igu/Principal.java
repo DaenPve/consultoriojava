@@ -132,7 +132,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnConsultapacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultapacienteActionPerformed
 
-        Consultapaciente2 consultapaciente = new Consultapaciente2();
+        
+        
+        Consultapaciente consultapaciente = new Consultapaciente();
+        consultapaciente.setVisible(true);
         consultapaciente.setLocationRelativeTo(null);
         
              
@@ -140,10 +143,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnRegistropacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistropacientesActionPerformed
     
+
         Registropacientes pantalla = new Registropacientes();
         pantalla.setVisible(true);
         pantalla.setLocationRelativeTo(null);
-       
               
                 
     }//GEN-LAST:event_btnRegistropacientesActionPerformed

@@ -5,28 +5,24 @@
 package com.mycompany.consultorio.persistencia;
 
 import com.mycompany.consultorio.logica.Paciente;
-import java.util.List;
 import javax.persistence.EntityManager;
+import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author patri
- */
 public class PacienteJpaController {
     
     private EntityManagerFactory emf;
 
     public PacienteJpaController() {
-        emf = Persistence.createEntityManagerFactory("persistence.xml");
+        emf = Persistence.createEntityManagerFactory("ConsultorioPU");
     }
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
-    public void insertar(Paciente paciente) {
+    public void create(Paciente paciente) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -40,7 +36,7 @@ public class PacienteJpaController {
         }
     }
 
-    public void actualizar(Paciente paciente) throws Exception {
+    public void update(Paciente paciente) throws Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -54,7 +50,7 @@ public class PacienteJpaController {
         }
     }
 
-    public void borrar(Long id) throws Exception {
+    public void delete(Long id) throws Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -72,7 +68,7 @@ public class PacienteJpaController {
         }
     }
 
-    public Paciente encontrarPaciente(Long id) {
+    public Paciente findPaciente(Long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Paciente.class, id);
@@ -81,7 +77,7 @@ public class PacienteJpaController {
         }
     }
 
-    public List<Paciente> encontrarPacientes() {
+    public List<Paciente> findAllPacientes() {
         EntityManager em = getEntityManager();
         try {
             return em.createQuery("SELECT * FROM Paciente p", Paciente.class).getResultList();
@@ -90,3 +86,4 @@ public class PacienteJpaController {
         }
     }
 }
+
