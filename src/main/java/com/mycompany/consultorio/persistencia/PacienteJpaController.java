@@ -19,7 +19,7 @@ public class PacienteJpaController {
     private EntityManagerFactory emf;
 
     public PacienteJpaController() {
-        emf = Persistence.createEntityManagerFactory("nombre_de_la_unidad_de_persistencia");
+        emf = Persistence.createEntityManagerFactory("persistence.xml");
     }
 
     public EntityManager getEntityManager() {

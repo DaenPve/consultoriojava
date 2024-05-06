@@ -132,8 +132,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnConsultapacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultapacienteActionPerformed
 
-        Consultapaciente pantalla = new Consultapaciente();
-        pantalla.setVisible(true);
+        Consultapaciente2 consultapaciente = new Consultapaciente2();
+        consultapaciente.setLocationRelativeTo(null);
+        
              
     }//GEN-LAST:event_btnConsultapacienteActionPerformed
 

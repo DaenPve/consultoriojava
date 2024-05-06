@@ -1,6 +1,7 @@
 package com.mycompany.consultorio.igu;
 
 import com.mycompany.consultorio.logica.Paciente;
+import com.mycompany.consultorio.persistencia.PacienteJpaController;
 import java.awt.event.KeyEvent;
 
 public class Registropacientes extends javax.swing.JFrame {
@@ -10,14 +11,6 @@ public class Registropacientes extends javax.swing.JFrame {
         lblIdPaciente.setVisible(false);
         txtIdPaciente.setVisible(false);
         btnEliminarPaciente.setVisible(false);
-        /*
-        Validaciones:
-        en nombre, apellidos de solo letras
-        edad solo numeros
-        sexo (un combo)
-        telefono solo numeros
-         */
-
     }
 
     @SuppressWarnings("unchecked")
@@ -325,7 +318,8 @@ public class Registropacientes extends javax.swing.JFrame {
         paciente.setTelefono(txtTelefono.getText());
         
         //Enviar el objeto a la base de datos
-        
+        PacienteJpaController pacienteController = new PacienteJpaController();
+        pacienteController.insertar(paciente);
         
     }//GEN-LAST:event_btnGuardarPacienteActionPerformed
 
