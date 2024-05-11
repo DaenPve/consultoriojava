@@ -25,11 +25,15 @@ public class Paciente implements Serializable {
     @OneToOne
     @JoinColumn(name="id_historial")
     private HistorialClinico id_historial;
+    
+    @OneToOne
+    @JoinColumn(name = "id_cita")
+    private CitaMedica id_cita;
 
     public Paciente() {
     }
 
-    public Paciente(int id_paciente, String nombre, String primerApellido, String segundoApellido, String edad, String sexo, String direccion, String telefono, HistorialClinico id_historial) {
+    public Paciente(int id_paciente, String nombre, String primerApellido, String segundoApellido, String edad, String sexo, String direccion, String telefono, HistorialClinico id_historial, CitaMedica id_cita) {
         this.id_paciente = id_paciente;
         this.nombre = nombre;
         this.primerApellido = primerApellido;
@@ -39,8 +43,7 @@ public class Paciente implements Serializable {
         this.direccion = direccion;
         this.telefono = telefono;
         this.id_historial = id_historial;
-        
-        
+        this.id_cita = id_cita;
     }
 
     public int getId_paciente() {
@@ -115,7 +118,15 @@ public class Paciente implements Serializable {
         this.id_historial = id_historial;
     }
 
-    
+    public CitaMedica getId_cita() {
+        return id_cita;
+    }
+
+    public void setId_cita(CitaMedica id_cita) {
+        this.id_cita = id_cita;
+    }
+
+   
        
 }
     

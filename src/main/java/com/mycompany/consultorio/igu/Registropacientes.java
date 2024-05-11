@@ -7,7 +7,12 @@ import java.awt.event.KeyEvent;
 public class Registropacientes extends javax.swing.JFrame {
 
     public Registropacientes() {
+        
         initComponents();
+        lblIdPaciente.setVisible(false);
+        txtIdPaciente.setVisible(false);
+        setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -36,9 +41,7 @@ public class Registropacientes extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnGuardarPaciente = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
-        btnModificarPaciente = new javax.swing.JButton();
         btnLimpiarPaciente = new javax.swing.JButton();
-        btnEliminarPaciente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -207,8 +210,11 @@ public class Registropacientes extends javax.swing.JFrame {
         });
 
         btnRegresar.setText("Regresar");
-
-        btnModificarPaciente.setText("Modificar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         btnLimpiarPaciente.setText("Limpiar");
         btnLimpiarPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -217,8 +223,6 @@ public class Registropacientes extends javax.swing.JFrame {
             }
         });
 
-        btnEliminarPaciente.setText("Eliminar");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -226,25 +230,19 @@ public class Registropacientes extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnEliminarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModificarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap(131, Short.MAX_VALUE)
                 .addComponent(btnGuardarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnModificarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLimpiarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEliminarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
@@ -272,15 +270,7 @@ public class Registropacientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimpiarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarPacienteActionPerformed
-
-        txtIdPaciente.setText("");
-        txtNombre.setText("");
-        txtPrimerApellido.setText("");
-        txtSegudoApellido.setText("");
-        intEdad.setText("");
-        cmbSexo.setSelectedIndex(-1);
-        txtDireccion.setText("");
-        txtTelefono.setText("");
+        limpiarPantalla();
     }//GEN-LAST:event_btnLimpiarPacienteActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
@@ -296,7 +286,7 @@ public class Registropacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSegudoApellidoKeyTyped
 
     private void intEdadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_intEdadKeyTyped
-       catchEventNumeros(evt);
+        catchEventNumeros(evt);
     }//GEN-LAST:event_intEdadKeyTyped
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
@@ -304,23 +294,36 @@ public class Registropacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void btnGuardarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPacienteActionPerformed
- 
-        
-        Paciente paciente = new Paciente();
-        paciente.setNombre(txtNombre.getText());
-        paciente.setPrimerApellido(txtPrimerApellido.getText());
-        paciente.setSegundoApellido(txtSegudoApellido.getText());
-        paciente.setEdad(intEdad.getText());
-        paciente.setSexo((String)cmbSexo.getSelectedItem());
-        paciente.setDireccion(txtDireccion.getText());
-        paciente.setTelefono(txtTelefono.getText());
-        paciente.setId_historial(null);
-        
-        
+
         Controladorapersi controladorapersi = new Controladorapersi();
-        controladorapersi.crearPaciente(paciente);
-        
+
+        if (txtNombre.getText().equals("") || txtPrimerApellido.getText().equals("") || txtSegudoApellido.getText().equals("") || intEdad.getText().equals("")
+                || cmbSexo.getSelectedItem().equals(null) || txtDireccion.getText().equals("") || txtTelefono.getText().equals("")) {
+            controladorapersi.msjAlerta(rootPane, "Verifica los datos!");
+        } else {
+
+            Paciente paciente = new Paciente();
+            paciente.setNombre(txtNombre.getText());
+            paciente.setPrimerApellido(txtPrimerApellido.getText());
+            paciente.setSegundoApellido(txtSegudoApellido.getText());
+            paciente.setEdad(intEdad.getText());
+            paciente.setSexo((String) cmbSexo.getSelectedItem());
+            paciente.setDireccion(txtDireccion.getText());
+            paciente.setTelefono(txtTelefono.getText());
+            paciente.setId_historial(null);
+
+            controladorapersi.crearPaciente(paciente);
+
+            controladorapersi.msjExito(rootPane, "¡Paciente Guardado con Exito!");
+            limpiarPantalla();
+        }
+
+
     }//GEN-LAST:event_btnGuardarPacienteActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void catchEvent(java.awt.event.KeyEvent evt) {
         char c = evt.getKeyChar();
@@ -337,11 +340,20 @@ public class Registropacientes extends javax.swing.JFrame {
         }
     }
 
+    private void limpiarPantalla() {
+        txtIdPaciente.setText("");
+        txtNombre.setText("");
+        txtPrimerApellido.setText("");
+        txtSegudoApellido.setText("");
+        intEdad.setText("");
+        cmbSexo.setSelectedIndex(-1);
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminarPaciente;
     private javax.swing.JButton btnGuardarPaciente;
     private javax.swing.JButton btnLimpiarPaciente;
-    private javax.swing.JButton btnModificarPaciente;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cmbSexo;
     private javax.swing.JTextField intEdad;

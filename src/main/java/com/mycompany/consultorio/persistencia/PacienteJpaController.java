@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.consultorio.persistencia;
 
 import com.mycompany.consultorio.logica.Paciente;
@@ -50,7 +46,7 @@ public class PacienteJpaController {
         }
     }
 
-    public void delete(Long id) throws Exception {
+    public void delete(int id) throws Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -68,7 +64,7 @@ public class PacienteJpaController {
         }
     }
 
-    public Paciente findPaciente(Long id) {
+    public Paciente findPaciente(int id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Paciente.class, id);

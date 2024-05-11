@@ -1,11 +1,22 @@
 package com.mycompany.consultorio.igu;
 
+import com.mycompany.consultorio.logica.Paciente;
+import com.mycompany.consultorio.persistencia.Controladorapersi;
 import java.awt.event.KeyEvent;
 
 public class Consultapaciente extends javax.swing.JFrame {
 
+    Paciente paciente;
+    private Controladorapersi controladorapersi = new Controladorapersi();
+
     public Consultapaciente() {
         initComponents();
+        txtNombre.setEnabled(false);
+        txtPrimerApellido.setEnabled(false);
+        txtSegudoApellido.setEnabled(false);
+
+        setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -23,11 +34,11 @@ public class Consultapaciente extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         txtPrimerApellido = new javax.swing.JTextField();
         txtSegudoApellido = new javax.swing.JTextField();
-        btnGuardarPaciente = new javax.swing.JButton();
+        btnBuscarPaciente = new javax.swing.JButton();
         btnLimpiarPaciente = new javax.swing.JButton();
-        btnEliminarPaciente = new javax.swing.JButton();
+        btnHistorialClinico = new javax.swing.JButton();
+        btnCitaMedica = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
-        btnModificarPaciente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,15 +71,40 @@ public class Consultapaciente extends javax.swing.JFrame {
             }
         });
 
-        btnGuardarPaciente.setText("Buscar");
+        btnBuscarPaciente.setText("Buscar");
+        btnBuscarPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarPacienteActionPerformed(evt);
+            }
+        });
 
         btnLimpiarPaciente.setText("Limpiar");
+        btnLimpiarPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarPacienteActionPerformed(evt);
+            }
+        });
 
-        btnEliminarPaciente.setText("Historial Clinico");
+        btnHistorialClinico.setText("Historial Clinico");
+        btnHistorialClinico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistorialClinicoActionPerformed(evt);
+            }
+        });
 
-        btnRegresar.setText("Cita Medica");
+        btnCitaMedica.setText("Cita Medica");
+        btnCitaMedica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCitaMedicaActionPerformed(evt);
+            }
+        });
 
-        btnModificarPaciente.setText("Regresar");
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -83,15 +119,15 @@ public class Consultapaciente extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnLimpiarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnModificarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                            .addComponent(btnGuardarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                            .addComponent(btnBuscarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEliminarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnHistorialClinico, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(141, 141, 141)
-                                .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(btnCitaMedica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,19 +161,19 @@ public class Consultapaciente extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtSegudoApellido))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnEliminarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnLimpiarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(btnBuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(btnModificarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnLimpiarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(btnHistorialClinico, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCitaMedica, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -194,6 +230,57 @@ public class Consultapaciente extends javax.swing.JFrame {
         catchEvent(evt);
     }//GEN-LAST:event_txtNombreKeyTyped
 
+    private void btnBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPacienteActionPerformed
+
+        Controladorapersi controladorapersi = new Controladorapersi();
+
+        if (txtIdPaciente.getText().equals("")) {
+            controladorapersi.msjAlerta(rootPane, "Ingresa ID Paciente.");
+        } else {
+            paciente = controladorapersi.buscarPaciente(Integer.parseInt(txtIdPaciente.getText()));
+            txtNombre.setText(paciente.getNombre());
+            txtPrimerApellido.setText(paciente.getPrimerApellido());
+            txtSegudoApellido.setText(paciente.getSegundoApellido());
+        }
+
+
+    }//GEN-LAST:event_btnBuscarPacienteActionPerformed
+
+    private void btnLimpiarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarPacienteActionPerformed
+        limpiarPantalla();
+    }//GEN-LAST:event_btnLimpiarPacienteActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnHistorialClinicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialClinicoActionPerformed
+
+        if (paciente != null) {
+            Historialclinico historialclinico = new Historialclinico();
+            historialclinico.setPaciente(paciente);
+            historialclinico.setHistorial(paciente.getId_historial());
+            historialclinico.setVisible(true);
+            historialclinico.setLocationRelativeTo(null);
+            historialclinico.iniciarVista();
+        } else {
+            controladorapersi.msjAlerta(rootPane, "Verifica tu busqueda");
+
+        }
+
+
+    }//GEN-LAST:event_btnHistorialClinicoActionPerformed
+
+    private void btnCitaMedicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitaMedicaActionPerformed
+        //if (paciente != null) {
+            Citamedica citamedica = new Citamedica();
+            citamedica.setVisible(true);
+            citamedica.setLocationRelativeTo(null);
+       // } else {
+       //     controladorapersi.msjAlerta(rootPane, "Verifica tu busqueda");
+       // }
+    }//GEN-LAST:event_btnCitaMedicaActionPerformed
+
     private void catchEvent(java.awt.event.KeyEvent evt) {
         char c = evt.getKeyChar();
         if (!(Character.isLetter(c) || (c == KeyEvent.VK_SPACE) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE)) {
@@ -201,12 +288,19 @@ public class Consultapaciente extends javax.swing.JFrame {
         }
     }
 
+    private void limpiarPantalla() {
+        txtIdPaciente.setText("");
+        txtNombre.setText("");
+        txtPrimerApellido.setText("");
+        txtSegudoApellido.setText("");
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminarPaciente;
-    private javax.swing.JButton btnGuardarPaciente;
+    private javax.swing.JButton btnBuscarPaciente;
+    private javax.swing.JButton btnCitaMedica;
+    private javax.swing.JButton btnHistorialClinico;
     private javax.swing.JButton btnLimpiarPaciente;
-    private javax.swing.JButton btnModificarPaciente;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

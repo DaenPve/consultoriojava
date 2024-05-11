@@ -1,9 +1,18 @@
 package com.mycompany.consultorio.igu;
 
+import com.mycompany.consultorio.logica.HistorialClinico;
+import com.mycompany.consultorio.logica.Paciente;
+import com.mycompany.consultorio.persistencia.Controladorapersi;
+
 public class Historialclinico extends javax.swing.JFrame {
+
+    private HistorialClinico historial;
+    private Paciente paciente;
+    private Controladorapersi controladorapersi = new Controladorapersi();
 
     public Historialclinico() {
         initComponents();
+        intId_Paciente.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -85,8 +94,18 @@ public class Historialclinico extends javax.swing.JFrame {
         jScrollPane6.setViewportView(txtExplora);
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +115,11 @@ public class Historialclinico extends javax.swing.JFrame {
         });
 
         btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -281,7 +305,98 @@ public class Historialclinico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-   
+        limpiarDatos();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+
+        int id_historial = 0;
+
+        if (txtPeso.getText().equals("") || txtEstatura.getText().equals("") || txtMotivoconsulta.getText().equals("")
+                || txtPadecimiento.getText().equals("") || txtAnHeac.getText().equals("") || txtAnpepa.getText().equals("")
+                || txtExplora.getText().equals("") || txtTratamiento.getText().equals("")) {
+            controladorapersi.msjAlerta(rootPane, "Verifica los datos!");
+        } else {
+
+            HistorialClinico h = new HistorialClinico();
+            h.setPeso(txtPeso.getText());
+            h.setEstartura(txtEstatura.getText());
+            h.setMotivoconsulta(txtMotivoconsulta.getText());
+            h.setPadecimmiento(txtPadecimiento.getText());
+            h.setAnheac(txtAnHeac.getText());
+            h.setAnpepa(txtAnpepa.getText());
+            h.setExplora(txtExplora.getText());
+            h.setTratamiento(txtTratamiento.getText());
+            id_historial = controladorapersi.crearHistorial(h);
+            h.setId_historial(id_historial);
+            paciente.setId_historial(h);
+            controladorapersi.actualizarPaciente(paciente);
+            limpiarDatos();
+            controladorapersi.msjExito(rootPane, "Historial Clinico Registrado");
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+
+        if (txtPeso.getText().equals("") || txtEstatura.getText().equals("") || txtMotivoconsulta.getText().equals("")
+                || txtPadecimiento.getText().equals("") || txtAnHeac.getText().equals("") || txtAnpepa.getText().equals("")
+                || txtExplora.getText().equals("") || txtTratamiento.getText().equals("")) {
+            controladorapersi.msjAlerta(rootPane, "Verifica los datos!");
+        } else {
+            HistorialClinico h = new HistorialClinico();
+            h.setId_historial(paciente.getId_historial().getId_historial());
+            h.setPeso(txtPeso.getText());
+            h.setEstartura(txtEstatura.getText());
+            h.setMotivoconsulta(txtMotivoconsulta.getText());
+            h.setPadecimmiento(txtPadecimiento.getText());
+            h.setAnheac(txtAnHeac.getText());
+            h.setAnpepa(txtAnpepa.getText());
+            h.setExplora(txtExplora.getText());
+            h.setTratamiento(txtTratamiento.getText());
+            controladorapersi.actualizarHistorial(h);
+            controladorapersi.msjExito(rootPane, "Historial Clinico Actualizado");
+            limpiarDatos();
+        }
+
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        limpiarDatos();
+        setVisible(false);
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    public void setHistorial(HistorialClinico h) {
+        historial = h;
+    }
+
+    public void setPaciente(Paciente p) {
+        paciente = p;
+    }
+
+    public void iniciarVista() {
+
+        if (historial != null) {
+            controladorapersi.obtenerHistorial(paciente.getId_paciente());
+            setDatosHistorial(historial);
+        } else {
+            controladorapersi.msjAlerta(rootPane, "Paciente sin historial clinico");
+            intId_Paciente.setText(String.valueOf(paciente.getId_paciente()));
+        }
+    }
+
+    private void setDatosHistorial(HistorialClinico historial) {
+        intId_Paciente.setText(String.valueOf(paciente.getId_paciente()));
+        txtPeso.setText(historial.getPeso());
+        txtEstatura.setText(historial.getEstatura());
+        txtMotivoconsulta.setText(historial.getMotivoconsulta());
+        txtPadecimiento.setText(historial.getPadecimmiento());
+        txtAnHeac.setText(historial.getAnheac());
+        txtAnpepa.setText(historial.getAnpepa());
+        txtExplora.setText(historial.getExplora());
+        txtTratamiento.setText(historial.getTratamiento());
+    }
+
+    private void limpiarDatos() {
         intId_Paciente.setText("");
         txtPeso.setText("");
         txtEstatura.setText("");
@@ -291,10 +406,7 @@ public class Historialclinico extends javax.swing.JFrame {
         txtAnHeac.setText("");
         txtPadecimiento.setText("");
         txtTratamiento.setText("");
-        
-        
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
