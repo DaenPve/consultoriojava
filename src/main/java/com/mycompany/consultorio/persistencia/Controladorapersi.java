@@ -3,6 +3,7 @@ package com.mycompany.consultorio.persistencia;
 import com.mycompany.consultorio.logica.CitaMedica;
 import com.mycompany.consultorio.logica.HistorialClinico;
 import com.mycompany.consultorio.logica.Paciente;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
 
@@ -75,12 +76,13 @@ public class Controladorapersi {
     }
 
     public CitaMedica obtenerCitaMedica(int id_paciente) {
+        
         Paciente paciente = null;
         CitaMedica cita = null;
 
         try {
             paciente = pacienteJPA.findPaciente(id_paciente);
-            cita = citamedicaJPA.findCita(paciente.getId_paciente());
+            cita = citamedicaJPA.findCita(paciente.getId_cita().getId_cita());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -121,6 +123,28 @@ public class Controladorapersi {
         }
     }
 
+    public List<CitaMedica> obtenerCitasMedicas(String fecha){
+        List<CitaMedica> lista = null;
+        try{
+            lista = citamedicaJPA.findAllCitasByDate(fecha);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return lista;
+    }
+   
+    
+    public CitaMedica verificarCita(String fecha, String hora){
+        CitaMedica c = null;
+        try{
+            c = citamedicaJPA.findCitaByFecha(fecha, hora);
+        }catch(Exception e){
+            //System.out.println(e.getMessage());
+        }
+        
+        return c;
+    }
+    
     public void msjExito(JRootPane rootPane, String msj) {
         JOptionPane.showMessageDialog(rootPane, msj);
     }

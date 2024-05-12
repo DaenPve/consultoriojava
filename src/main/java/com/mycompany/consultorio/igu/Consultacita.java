@@ -1,13 +1,17 @@
 package com.mycompany.consultorio.igu;
 
+import com.mycompany.consultorio.logica.CitaMedica;
+import com.mycompany.consultorio.logica.Paciente;
 import com.mycompany.consultorio.persistencia.CitaMedicaJpaController;
 import com.mycompany.consultorio.persistencia.Controladorapersi;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class Consultacita extends javax.swing.JFrame {
     
     private Controladorapersi controladorapersi = new Controladorapersi();
-    private CitaMedicaJpaController citaMedicaJpaController = new CitaMedicaJpaController();
+    String[] cols = { "Paciente", "Nombre", "Primer Apellido", "Segundo Apellido", "Fecha", "Hora", "Servicio"};
 
     public Consultacita() {
         initComponents();
@@ -26,7 +30,7 @@ public class Consultacita extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCitas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,21 +97,15 @@ public class Consultacita extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Id_paciente", "Nombre", "Primer Apellido", "Segundo Apellido", "Fecha", "Hora", "Servicio"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblCitas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -164,14 +162,26 @@ public class Consultacita extends javax.swing.JFrame {
         
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String fecha = sdf.format(txtFecha.getDate());
+        List<CitaMedica> citas = controladorapersi.obtenerCitasMedicas(fecha.split(" ")[0]);
+        DefaultTableModel model = new DefaultTableModel(cols, 0);
         
+        for(int i = 0;  i < citas.size(); i++){
+            //Iterar cada objeto de cita
+            //Obtener el idpaciente y llamar metodo de obtenerPaciente
+            Paciente p = controladorapersi.buscarPaciente(citas.get(i).getPaciente().getId_paciente());
+            Object[] rowData = {p.getId_paciente(), p.getNombre(), p.getPrimerApellido(), p.getSegundoApellido(), citas.get(i).getFecha(), citas.get(i).getHora(), citas.get(i).getServicio()};
+            model.addRow(rowData);
+        }
+        
+        tblCitas.setModel(model);
         //Realizar filtrado por medio de fechas a entidad CitaMedica
         //Crear un metodo que me filtre por fechas y me obtenga lista de CitasMedicas
-        
-        
     }//GEN-LAST:event_btnBuscarActionPerformed
 
 
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegresar;
@@ -181,7 +191,7 @@ public class Consultacita extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblCitas;
     private com.toedter.calendar.JDateChooser txtFecha;
     // End of variables declaration//GEN-END:variables
 }

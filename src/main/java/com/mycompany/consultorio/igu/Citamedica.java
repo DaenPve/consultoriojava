@@ -8,7 +8,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
@@ -286,6 +285,7 @@ public class Citamedica extends javax.swing.JFrame {
                 setDataCita(citamedica);
                 btnGuardar.setEnabled(false);
             } else {
+                //btnModificar.setEnabled(false);
                 controladorapersi.msjAlerta(rootPane, "Sin Citas Registradas del paciente " + intId_Paciente.getText());
                 paciente = controladorapersi.buscarPaciente(Integer.parseInt(intId_Paciente.getText()));
                 enableCampos();
@@ -297,27 +297,44 @@ public class Citamedica extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         //NOTA: no dejar que guarde si ya hay una cita a esa hora y fecha 
-        //Guardar objeto de cita
-        //Actualizar objeto de paciente (darle el objeto cita)
-        //limpiar los campos
-        //Mostrar mensaje
         CitaMedica c = new CitaMedica();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String fecha = sdf.format(txtFecha.getDate());
-        c.setFecha(fecha);
         Date dateHora = (Date) spHora.getValue();
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
         String hora = formatter.format(dateHora);
-        c.setHora(hora);
-        c.setPaciente(paciente);
-        c.setServicio(txtServicio.getText());
-        id_cita = controladorapersi.crearCitaMedica(c);
-        c.setId_cita(id_cita);
-        paciente.setId_cita(c);
-        controladorapersi.actualizarPaciente(paciente);
-        controladorapersi.msjExito(rootPane, "Cita Registrada");
-        limpiarPantalla();
+
+        if (existeCita(fecha, hora)) {
+            controladorapersi.msjAlerta(rootPane, "Fecha/Hora No Disponibles");
+            limpiarPantalla();
+        } else {
+            c.setFecha(fecha);
+            c.setHora(hora);
+            c.setPaciente(paciente);
+            c.setServicio(txtServicio.getText());
+            id_cita = controladorapersi.crearCitaMedica(c);
+            c.setId_cita(id_cita);
+            paciente.setId_cita(c);
+            controladorapersi.actualizarPaciente(paciente);
+            controladorapersi.msjExito(rootPane, "Cita Registrada");
+            limpiarPantalla();
+        }
+
+
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private boolean existeCita(String fecha, String hora) {
+
+        boolean existe = false;
+        CitaMedica c = controladorapersi.verificarCita(fecha.split(" ")[0], hora);
+
+        if (c != null) {
+            existe = true;
+        }
+
+        return existe;
+
+    }
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 
@@ -340,7 +357,7 @@ public class Citamedica extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // Realizar busqueda
+
         if (intId_Paciente.getText().equals("")) {
             controladorapersi.msjAlerta(rootPane, "Verifica tu busqueda");
         } else {
